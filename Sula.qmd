@@ -156,16 +156,24 @@ knitr::kable(closest_star_data, col.names = c("Controlling Faction", "Closest St
 
 ## Question 14
 ```{r}
-#active_2830 <- real_faction_data |>
-#  filter("2830" >= Founding.Year & (is.na(final.year) | "2830" <= final.year))
+year <- "2830"
+active_2830 <- real_faction_data |>
+  filter({{year}} >= Founding.Year & (is.na(final.year) | {{year}} <= final.year))
 
-#knitr::kable(active_2830)
+#knitr::kable(active_2830, col.names = c("Controlling Faction", "Foundation Year", "Dissolution Year"), align = c("l", "r", "r"))
 ```
 
 # Improved data representation
 
 ## Question 15
 ```{r}
+star_data <- read.csv("data/star_types.csv", na.strings = "NA", sep = ",")
 
+str(star_data)
+```
+## Question 16
+```{r}
+stars_split <- stars |>
+  separate(col = "STELLAR.CLASS", into = c("Temperature_Class", "Magnitude", "Luminosity_Class"), sep = ":")
 ```
 
