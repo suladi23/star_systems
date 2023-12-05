@@ -131,6 +131,18 @@ ggplot(faction_counts, aes(x = Faction_key, y = Star_Systems)) +
 
 ## Question 12
 ```{r}
+merged_data <- merge(merge(stars, controlling_faction, by = "STAR_NUMBER"), faction, by = "Faction_key")
 
+real_faction_data <- merged_data |>
+  filter(!faction.name %in% c("A", "I", "U"))
+
+ggplot(real_faction_data, aes(x = faction.name, y = Distance)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Distance to the Sun by Faction",
+       x = "Faction",
+       y = "Distance to Sun (light years)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90))
 ```
+
 
