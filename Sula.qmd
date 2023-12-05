@@ -81,3 +81,9 @@ Most_Massive_star = stars$star_name[max_mass],
 knitr::kable(extreme_mass_stars, col.names = c("Most Massive Star", "Most Massive Value", "Least Massive Star", "Least Massive Value"), align = c("l", "c", "l", "c"))
 ```
 
+# 3 Factions
+## Question 7
+In the Battletech universe, star systems are controlled by factions. Committing into git the two data:
+ALLBTFACTIONS.csv
+Sytem+faction.csv
+
