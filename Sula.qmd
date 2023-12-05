@@ -113,6 +113,18 @@ cat("The number of star systems not found in the 'Sytem+faction.csv' file is:", 
 
 ## Question 11
 ```{r}
+filtered_controlling_faction <- controlling_faction |>
+  filter(!detailed.structure %in% c("A", "I", "U"))
 
+faction_counts <- filtered_controlling_faction |>
+  group_by(detailed.structure) |>
+  summarise(Star_Systems = n())
+
+ggplot(faction_counts, aes(x = detailed.structure, y = Star_Systems)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Number of Star Systems Controlled by Each Faction",
+       x = "Faction",
+       y = "Number of Star Systems") +
+  theme_minimal()
 ```
 
