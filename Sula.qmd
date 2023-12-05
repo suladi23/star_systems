@@ -134,7 +134,7 @@ ggplot(faction_counts, aes(x = Faction_key, y = Star_Systems)) +
 merged_data <- merge(merge(stars, controlling_faction, by = "STAR_NUMBER"), faction, by = "Faction_key")
 
 real_faction_data <- merged_data |>
-  filter(!faction.name %in% c("A", "I", "U"))
+  filter(!Faction_key %in% c("A", "I", "U"))
 
 ggplot(real_faction_data, aes(x = faction.name, y = Distance)) +
   geom_bar(stat = "identity") +
@@ -145,4 +145,12 @@ ggplot(real_faction_data, aes(x = faction.name, y = Distance)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
+## Question 13
+```{r}
+closest_star_data <- real_faction_data |>
+  group_by(faction.name) |>
+  filter(Distance == min(Distance, na.rm = TRUE)) |>
+  select(faction.name, star_name, Distance)
+knitr::kable(closest_star_data, col.names = c("Controlling Faction", "Closest Star", "Distance to Sun"), align = c("l", "l", "r"))
+```
 
