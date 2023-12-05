@@ -68,5 +68,16 @@ ggplot(stars, aes(x = Temperature, y = mass)) +
        y = "Mass")
 ```
 
+## Question 6
 
+```{r}
+max_mass <- which.max(stars$mass)
+min_mass <- which.min(stars$mass)
+extreme_mass_stars <- data.frame(
+Most_Massive_star = stars$star_name[max_mass],
+  Most_Massive_Value = stars$mass[max_mass],
+  Least_Massive_Star = stars$star_name[min_mass],
+  Least_Massive_Value = stars$mass[min_mass])
+knitr::kable(extreme_mass_stars, col.names = c("Most Massive Star", "Most Massive Value", "Least Massive Star", "Least Massive Value"), align = c("l", "c", "l", "c"))
+```
 
