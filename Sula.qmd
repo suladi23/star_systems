@@ -106,6 +106,13 @@ knitr::kable(fake_factions_counts, col.names = c("Detailed Structure", "Count"),
 
 ## Question 10
 ```{r}
+unmatched_stars <- nrow(anti_join(stars, controlling_faction, by = "STAR_NUMBER"))
+
+cat("The number of star systems not found in the 'Sytem+faction.csv' file is:", unmatched_stars)
+```
+
+## Question 11
+```{r}
 
 ```
 
