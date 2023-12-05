@@ -2,6 +2,7 @@
 title: "Sula"
 format: html
 editor: visual
+author: "Disem Sula"
 ---
 ```{r}
 #| message: false
@@ -14,4 +15,58 @@ library(ggplot2)
 library(knitr)
 library(stringr)
 ```
+
+# Main data set import
+
+##Question 1
+
+Adding the data to the project and first commits
+
+##Question 2
+
+Click [here](https://github.com/suladi23/star_systems) for the github repository
+
+## Question 3
+
+```{r}
+stars <- read.csv("data/data_systems.csv", na.strings = "NA", sep = ";")
+```
+
+```{r}
+str(stars)
+```
+We see that there are 1035 observations, as asked and 8 variables.
+
+```{r}
+#numerical_variables <- c("Distance", "Temperature", "Radius", "mass", "RELATIVE LUMINOSITY")
+#numeric_check <- all(sapply(stars[, numerical_variables, drop = FALSE], is.numeric))
+```
+```{r}
+num_observations <- nrow(stars)
+num_variables <- ncol(stars)
+missing_values <- colSums(is.na(stars))
+observations_one_missing <- sum(apply(stars, 1, anyNA))
+
+data_description <- data.frame(
+  Metric = c("Number of Observations", "Number of Variables", "Number of Missing Values", "Number of Observations with Missing Values"),
+  Value = c(num_observations, num_variables, sum(missing_values), observations_one_missing)
+)
+
+```
+
+```{r warning=FALSE}
+
+knitr::kable(data_description, col.names = c("Metric", "Value"), align = c("l", "c"))
+```
+# Introductory analysis
+## Question 1
+```{r warning=FALSE}
+ggplot(stars, aes(x = Temperature, y = mass)) +
+  geom_point() +
+  labs(title = "Mass of Stars as a Function of Temperature",
+       x = "Temperature",
+       y = "Mass")
+```
+
+
 
