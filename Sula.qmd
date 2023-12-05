@@ -154,3 +154,18 @@ closest_star_data <- real_faction_data |>
 knitr::kable(closest_star_data, col.names = c("Controlling Faction", "Closest Star", "Distance to Sun"), align = c("l", "l", "r"))
 ```
 
+## Question 14
+```{r}
+#active_2830 <- real_faction_data |>
+#  filter("2830" >= Founding.Year & (is.na(final.year) | "2830" <= final.year))
+
+#knitr::kable(active_2830)
+```
+
+# Improved data representation
+
+## Question 15
+```{r}
+
+```
+
