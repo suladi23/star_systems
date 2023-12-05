@@ -6,6 +6,7 @@ author: "Disem Sula"
 ---
 ```{r}
 #| message: false
+#| echo: false
 here::i_am("Final_lab_Sula.Rproj")
 library(here)
 library(vroom)
@@ -33,6 +34,8 @@ stars <- read.csv("data/data_systems.csv", na.strings = "NA", sep = ";")
 ```
 
 ```{r}
+#| message: false
+#| echo: false
 str(stars)
 ```
 We see that there are 1035 observations, as asked and 8 variables.
@@ -175,5 +178,29 @@ str(star_data)
 ```{r}
 stars_split <- stars |>
   separate(col = "STELLAR.CLASS", into = c("Temperature_Class", "Magnitude", "Luminosity_Class"), sep = ":")
+```
+
+# Advanced analysis
+
+## Question 17
+```{r}
+ggplot(stars_split, aes(x = Temperature_Class)) +
+  geom_bar(fill = "skyblue") +
+  labs(title = "Distribution of Stars by Temperature Class",
+       x = "Temperature Class",
+       y = "Number of Stars") +
+  theme_minimal()
+```
+
+## Question 18
+```{r warning=FALSE}
+#| echo: false
+#| message: false
+ggplot(stars_split, aes(x = Temperature_Class)) +
+  geom_bar(aes(fill=Magnitude), position = "dodge", color = "white") +
+  labs(title = "Distribution of Stars by Temperature Class and Magnitude",
+       x = "Temperature Class",
+       y = "Number of Stars")
+  theme_minimal()
 ```
 
