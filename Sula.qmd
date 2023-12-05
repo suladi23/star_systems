@@ -37,6 +37,7 @@ str(stars)
 ```
 We see that there are 1035 observations, as asked and 8 variables.
 
+## Question 4
 ```{r}
 #numerical_variables <- c("Distance", "Temperature", "Radius", "mass", "RELATIVE LUMINOSITY")
 #numeric_check <- all(sapply(stars[, numerical_variables, drop = FALSE], is.numeric))
@@ -51,7 +52,6 @@ data_description <- data.frame(
   Metric = c("Number of Observations", "Number of Variables", "Number of Missing Values", "Number of Observations with Missing Values"),
   Value = c(num_observations, num_variables, sum(missing_values), observations_one_missing)
 )
-
 ```
 
 ```{r warning=FALSE}
@@ -86,4 +86,26 @@ knitr::kable(extreme_mass_stars, col.names = c("Most Massive Star", "Most Massiv
 In the Battletech universe, star systems are controlled by factions. Committing into git the two data:
 ALLBTFACTIONS.csv
 Sytem+faction.csv
+
+## Question 8
+```{r}
+faction <- read.csv("data/ALLBTFACTIONS.csv", na.strings = "missing", sep = ";")
+controlling_faction <- read.csv("data/Sytem+faction.csv", na.strings = "missing", sep = ";")
+```
+
+## Question 9
+```{r}
+fake_factions_counts <- controlling_faction |>
+  group_by(detailed.structure) |>
+  summarise(
+    Count = n()
+  ) |>
+  filter(detailed.structure %in% c("A", "I", "U"))
+knitr::kable(fake_factions_counts, col.names = c("Detailed Structure", "Count"), align = c("l", "c"))
+```
+
+## Question 10
+```{r}
+
+```
 
